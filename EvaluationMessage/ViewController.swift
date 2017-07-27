@@ -7,13 +7,37 @@
 //
 
 import UIKit
+import Firebase
+import Firebase
 
 class ViewController: UIViewController,UITextViewDelegate,FloatRatingViewDelegate {
 
     @IBOutlet weak var uitextEvaluationMessage: UITextView!
     @IBOutlet weak var floatRatingView: FloatRatingView!
     
+    var ref : DatabaseReference!
+
+
     var floatStars:Float = 0.0
+    
+    
+    func setDoneOnKeyboard() {
+        let keyboardToolbar = UIToolbar()
+        keyboardToolbar.sizeToFit()
+        let flexBarButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneBarButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.dismissKeyboard))
+        keyboardToolbar.items = [flexBarButton, doneBarButton]
+        self.uitextEvaluationMessage.inputAccessoryView = keyboardToolbar
+    }
+    
+    func dismissKeyboard() {
+        ref = Database.database().reference(fromURL: "https://myfirebase-c064c.firebaseio.com/").child("test").childByAutoId()
+        let postInfo = [ "uid": "輸入者", "Description": uitextEvaluationMessage.text!, "stars": floatStars ] as [String : Any]
+        ref.setValue(postInfo)
+        let childautoID = ref.key
+        print("childautoID:\(childautoID)資料已建立" )
+        view.endEditing(true)
+    }
     
     override func viewDidLoad()
     {
@@ -21,9 +45,13 @@ class ViewController: UIViewController,UITextViewDelegate,FloatRatingViewDelegat
         uitextEvaluationMessage.textColor = UIColor.lightGray
         uitextEvaluationMessage.delegate = self
         self.floatRatingView.delegate = self
+        setDoneOnKeyboard()
     }
 
-
+  
+    
+    
+    
     //MARK: UITextViewDelegate實作區
     func textViewDidBeginEditing(_ textView: UITextView)
     {
