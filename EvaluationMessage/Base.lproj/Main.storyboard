@@ -76,6 +76,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="oYf-6G-aAh"/>
                     <connections>
+                        <outlet property="floatRatingView" destination="zqW-a8-eEe" id="1TL-gH-gV2"/>
                         <outlet property="uitextEvaluationMessage" destination="RnS-fd-s8k" id="qtB-lF-Vh0"/>
                     </connections>
                 </viewController>

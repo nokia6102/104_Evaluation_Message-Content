@@ -8,14 +8,19 @@
 
 import UIKit
 
-class ViewController: UIViewController,UITextViewDelegate {
+class ViewController: UIViewController,UITextViewDelegate,FloatRatingViewDelegate {
 
     @IBOutlet weak var uitextEvaluationMessage: UITextView!
+    @IBOutlet weak var floatRatingView: FloatRatingView!
+    
+    var floatStars:Float = 0.0
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
         uitextEvaluationMessage.textColor = UIColor.lightGray
         uitextEvaluationMessage.delegate = self
+        self.floatRatingView.delegate = self
     }
 
 
@@ -27,7 +32,17 @@ class ViewController: UIViewController,UITextViewDelegate {
             textView.textColor = UIColor.black
         }
     }
-    
 
+    // MARK: FloatRatingViewDelegate
+    func floatRatingView(_ ratingView: FloatRatingView, isUpdating rating:Float)
+    {
+//        print( NSString(format: "%.2f", self.floatRatingView.rating) as String)
+    }
+    
+    func floatRatingView(_ ratingView: FloatRatingView, didUpdate rating: Float)
+    {
+        floatStars = self.floatRatingView.rating
+        print( NSString(format: "%.2f", self.floatRatingView.rating) as String)
+    }
 }
 
