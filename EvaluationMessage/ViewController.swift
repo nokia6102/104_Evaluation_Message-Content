@@ -8,24 +8,26 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController,UITextViewDelegate {
 
     @IBOutlet weak var uitextEvaluationMessage: UITextView!
-    override func viewDidLoad() {
-        super.viewDidLoad()
-     
- 
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    func tagEvalution()
+    override func viewDidLoad()
     {
-        print("It works!")
+        super.viewDidLoad()
+        uitextEvaluationMessage.textColor = UIColor.lightGray
+        uitextEvaluationMessage.delegate = self
     }
+
+
+    //MARK: UITextViewDelegate實作區
+    func textViewDidBeginEditing(_ textView: UITextView)
+    {
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
+    }
+    
 
 }
 
