@@ -8,13 +8,12 @@
 
 import UIKit
 import Firebase
-import Firebase
 
 class ViewController: UIViewController,UITextViewDelegate,FloatRatingViewDelegate {
 
     @IBOutlet weak var uitextEvaluationMessage: UITextView!
     @IBOutlet weak var floatRatingView: FloatRatingView!
-    
+    var evContent : UIView!
     var ref : DatabaseReference!
 
 
@@ -37,6 +36,8 @@ class ViewController: UIViewController,UITextViewDelegate,FloatRatingViewDelegat
         let childautoID = ref.key
         print("childautoID:\(childautoID)資料已建立" )
         view.endEditing(true)
+        //do-to: 程式轉場
+         self.performSegue(withIdentifier: "content", sender: nil)
     }
     
     override func viewDidLoad()
@@ -50,6 +51,17 @@ class ViewController: UIViewController,UITextViewDelegate,FloatRatingViewDelegat
 
   
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        super.prepare(for: segue, sender: sender)
+        
+        if segue.identifier == "content"
+        {
+            let secondVC = segue.destination as! EvaluationContentViewController
+            secondVC.stars = floatStars
+            secondVC.mydesc = uitextEvaluationMessage.text!
+        }
+    }
     
     
     //MARK: UITextViewDelegate實作區
