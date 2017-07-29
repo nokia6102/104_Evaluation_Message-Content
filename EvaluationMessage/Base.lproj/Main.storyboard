@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -50,7 +50,7 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="halfRatings" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="請寫下對這次交談的感想" translatesAutoresizingMaskIntoConstraints="NO" id="RnS-fd-s8k">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="請寫下對這次交談的感想" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="RnS-fd-s8k">
                                 <rect key="frame" x="22" y="211" width="374" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -76,7 +76,7 @@
                     <connections>
                         <outlet property="floatRatingView" destination="zqW-a8-eEe" id="mpZ-py-Hv6"/>
                         <outlet property="uitextEvaluationMessage" destination="RnS-fd-s8k" id="eOa-QP-aeU"/>
-                        <segue destination="R2y-Gp-ZZc" kind="show" identifier="content" id="pBG-kT-lxW"/>
+                        <segue destination="R2y-Gp-ZZc" kind="showDetail" identifier="content" action="showViewController:sender:" id="pBG-kT-lxW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -86,7 +86,7 @@
         <!--Evaluation Content View Controller-->
         <scene sceneID="X1M-t6-Xe2">
             <objects>
-                <viewController storyboardIdentifier="myContent" id="R2y-Gp-ZZc" customClass="EvaluationContentViewController" customModule="EvaluationMessage" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="myContent" modalTransitionStyle="flipHorizontal" id="R2y-Gp-ZZc" customClass="EvaluationContentViewController" customModule="EvaluationMessage" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="eAG-qq-wkU"/>
                         <viewControllerLayoutGuide type="bottom" id="R4V-QQ-0dA"/>

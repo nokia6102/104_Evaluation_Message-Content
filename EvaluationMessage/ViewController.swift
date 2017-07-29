@@ -13,6 +13,9 @@ class ViewController: UIViewController,UITextViewDelegate,FloatRatingViewDelegat
 
     @IBOutlet weak var uitextEvaluationMessage: UITextView!
     @IBOutlet weak var floatRatingView: FloatRatingView!
+  
+  
+  
     var evContent : UIView!
     var ref : DatabaseReference!
 
@@ -31,8 +34,12 @@ class ViewController: UIViewController,UITextViewDelegate,FloatRatingViewDelegat
     
     func dismissKeyboard() {
         ref = Database.database().reference(fromURL: "https://myfirebase-c064c.firebaseio.com/").child("test").childByAutoId()
-        let postInfo = [ "uid": "輸入者", "Description": uitextEvaluationMessage.text!, "stars": floatStars ] as [String : Any]
+        let postInfo = [ "uid": "輸入者", "Description": uitextEvaluationMessage.text!, "stars": floatStars
+          , "timestamp": ServerValue.timestamp() ]
+          as [String : Any]
         ref.setValue(postInfo)
+      
+      
         let childautoID = ref.key
         print("childautoID:\(childautoID)資料已建立" )
         view.endEditing(true)
@@ -46,6 +53,7 @@ class ViewController: UIViewController,UITextViewDelegate,FloatRatingViewDelegat
         uitextEvaluationMessage.textColor = UIColor.lightGray
         uitextEvaluationMessage.delegate = self
         self.floatRatingView.delegate = self
+        self.floatRatingView.rating = floatStars
         setDoneOnKeyboard()
     }
 
@@ -70,6 +78,7 @@ class ViewController: UIViewController,UITextViewDelegate,FloatRatingViewDelegat
         if textView.textColor == UIColor.lightGray {
             textView.text = nil
             textView.textColor = UIColor.black
+            textView.textAlignment = .left
         }
     }
 
